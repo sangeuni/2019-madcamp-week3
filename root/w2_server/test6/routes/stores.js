@@ -37,7 +37,22 @@ router.put('/:store_name', function(req, res) {
 		if(err) res.status(500).json( { error: 'Database failure' });
 		console.log(output);
 		if(!output.n) return res.status(404).json( { error: 'Stores not found' });
-		res.json( { message: 'Address updated' });
+		res.json( { message: 'waiting_number updated' });
+	});
+});
+
+router.post('/:store_name', function(req, res) {
+	Stores.findOne({store_name: req.params.store_name}, function(err, output) {
+		if(req.body.menu != null) {
+				output.menu.push({name: req.body.menu.name, price: req.body.menu.price});
+		}
+		if(req.body.review != null) {
+			output.review.push({write: req.body.review});
+		}
+		output.save(function(err){
+			if(err) return res.json({error: 'error'})
+			res.json({result:1})
+		});
 	});
 });
 

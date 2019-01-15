@@ -7,7 +7,7 @@ var connection = mongoose.createConnection("mongodb://localhost/w2");
 autoIncrement.initialize(connection);
 
 var customersSchema = new Schema( {
-  phone:{type: String, unique:true},
+  phone:{type: String},
   store_name:String,
   customer_number: Number,
 	people_count: Number,
