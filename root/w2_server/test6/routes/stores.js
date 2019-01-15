@@ -16,7 +16,8 @@ router.post('/', function(req, res) {
 	stores.store_name = req.body.store_name;
 	stores.waiting_number = req.body.waiting_number;
 	stores.customer_number = req.body.customer_number;
-	stores.token = req.body.token;
+	stores.menu = req.body.menu;
+	stores.review = req.body.review;
 
 	stores.save(function(err) {
 		if(err) {
@@ -29,9 +30,10 @@ router.post('/', function(req, res) {
 	});
 });
 
+
 // Update the address
-router.put('/:_id', function(req, res) {
-	Stores.update( { _id: req.params._id }, { $set: req.body }, function(err, output) {
+router.put('/:store_name', function(req, res) {
+	Stores.update( {store_name: req.params.store_name }, { $set: req.body }, function(err, output) {
 		if(err) res.status(500).json( { error: 'Database failure' });
 		console.log(output);
 		if(!output.n) return res.status(404).json( { error: 'Stores not found' });

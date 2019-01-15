@@ -5,17 +5,21 @@ var logger 		= require('morgan');
 var cookieParser= require('cookie-parser');
 var bodyParser 	= require('body-parser');
 
+var mongodb     = require('mongodb');
+var crypto = require('crypto');
+var multer      = require('multer');
+var fs          = require('fs');
+
 /* Connect to database */
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/w2');
-// require("./models/Photo");
-
 
 /* Difine routes */
 var firstPage = require('./routes/firstpage');
 var stores = require('./routes/stores');
 var customers = require('./routes/customers');
+var Login = require('./models/login');
 
 var app = express();
 

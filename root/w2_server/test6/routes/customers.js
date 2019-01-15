@@ -13,10 +13,12 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
 	var customers = new Customers();
 
+	customers.phone = req.body.phone;
 	customers.store_name = req.body.store_name;
 	customers.customer_number = req.body.customer_number;
 	customers.people_count = req.body.people_count;
 	customers.token = req.body.token;
+	customers.waiting_number = req.body.waiting_number;
 
 	customers.save(function(err) {
 		if(err) {
